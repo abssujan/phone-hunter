@@ -9,6 +9,13 @@ const displayPhoneData = phones => {
     console.log(phones)
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.textContent = '';
+    // if phone not found
+    const warnigDiv = document.getElementById('warning');
+    if(phones.length === 0){
+        warnigDiv.classList.remove('d-none')
+    }else{
+        warnigDiv.classList.add('d-none')
+    }
     phones.forEach(phone => {
         const phoneDiv = document.createElement('div');
         phoneDiv.classList.add('col');
@@ -30,4 +37,3 @@ document.getElementById('search-btn').addEventListener('click', function(){
     loadPhoneData(inputValue)
     inputField.value = ``
 })
-loadPhoneData()
