@@ -30,10 +30,21 @@ const displayPhoneData = phones => {
         `;
         phoneContainer.appendChild(phoneDiv)
     })
+    toggleSpiner(false)
 }
 document.getElementById('search-btn').addEventListener('click', function(){
+    toggleSpiner(true)
     const inputField = document.getElementById('input-field');
     const inputValue = inputField.value;
     loadPhoneData(inputValue)
     inputField.value = ``
 })
+
+const toggleSpiner = (isLoading) => {
+    const loderSection = document.getElementById('loder');
+    if(isLoading){
+        loderSection.classList.remove('d-none')
+    }else {
+        loderSection.classList.add('d-none')
+    }
+}
