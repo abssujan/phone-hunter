@@ -34,7 +34,7 @@ const displayPhoneData = (phones, dataLimit) => {
                 <h5 class="card-title"> ${phone.phone_name} </h5>
                 <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
              </div>
-             <div onclick="loadShowDetailsData('${phone.slug}')" class=""><a href="#" class="btn btn-primary w-50">Show Details</a></div>
+             <button onclick="loadShowDetailsData('${phone.slug}')" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#phoneModal">Show Details</>
         </div>
         `;
         phoneContainer.appendChild(phoneDiv)
@@ -75,6 +75,11 @@ const loadShowDetailsData = async id => {
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.data)
+    displayShowDetailsData(data.data)
 
+}
+
+const displayShowDetailsData = phone => {
+    const phoneTitle = document.getElementById('phoneModalLabel');
+    phoneTitle.innerText = `${phone.name}`
 }
