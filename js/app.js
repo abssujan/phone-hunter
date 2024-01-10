@@ -80,6 +80,14 @@ const loadShowDetailsData = async id => {
 }
 
 const displayShowDetailsData = phone => {
+    console.log(phone)
     const phoneTitle = document.getElementById('phoneModalLabel');
-    phoneTitle.innerText = `${phone.name}`
+    phoneTitle.innerText = `${phone.name}`;
+    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.innerHTML = `
+    <p><span class="fw-bold">Release Date:</span> ${phone.releaseDate ? phone.releaseDate : 'No release date found'} </p>
+    <p><span class="fw-bold">Chip Set:</span> ${phone.mainFeatures.chipSet ? phone.mainFeatures.chipSet : 'No details found'}</p>
+    <p><span class="fw-bold">Memory:</span> ${phone.mainFeatures.memory ? phone.mainFeatures.memory : 'No details found'}</p>
+    <p><span class="fw-bold">Storage:</span> ${phone.mainFeatures.storage ? phone.mainFeatures.storage : 'No details found'}</p>
+    `
 }
