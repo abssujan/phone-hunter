@@ -1,14 +1,22 @@
 // fetch data
-const loadPhoneData = async(search) => {
+const loadPhoneData = async(search, dataLimit) => {
     const url =`https://openapi.programming-hero.com/api/phones?search=${search}`;
     const res = await fetch(url);
     const data = await res.json();
-    displayPhoneData(data.data)
+    displayPhoneData(data.data, dataLimit)
 }
-const displayPhoneData = phones => {
+const displayPhoneData = (phones, dataLimit) => {
     console.log(phones)
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.textContent = '';
+    //display 10 phones
+    const showAll = document.getElementById('show-all');
+    if(dataLimit && phones.length > 10){
+        phones = phones.slice(0,10)
+        showAll.classList.remove('d-none')
+    }else {
+        showAll.classList.add('d-none')
+    }
     // if phone not found
     const warnigDiv = document.getElementById('warning');
     if(phones.length === 0){
@@ -32,12 +40,16 @@ const displayPhoneData = phones => {
     })
     toggleSpiner(false)
 }
-document.getElementById('search-btn').addEventListener('click', function(){
+const porcecerSearch = (dataLimit) => {
     toggleSpiner(true)
     const inputField = document.getElementById('input-field');
     const inputValue = inputField.value;
-    loadPhoneData(inputValue)
-    inputField.value = ``
+    loadPhoneData(inputValue, dataLimit)
+    //inputField.value = ``
+}
+
+document.getElementById('search-btn').addEventListener('click', function(){
+    porcecerSearch(10)
 })
 
 const toggleSpiner = (isLoading) => {
@@ -48,3 +60,6 @@ const toggleSpiner = (isLoading) => {
         loderSection.classList.add('d-none')
     }
 }
+document.getElementById('show-all-btn').addEventListener('click', function(){
+    porcecerSearch()
+})
