@@ -86,7 +86,7 @@ const displayShowDetailsData = phone => {
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.innerHTML = `
     <p><span class="fw-bold">Release Date:</span> ${phone.releaseDate ? phone.releaseDate : 'No release date found'} </p>
-    <p><span class="fw-bold">Chip Set:</span> </p>
+    <p><span class="fw-bold">Chip Set:</span> ${phone.mainFeatures.chipSet ? phone.mainFeatures.chipSet : 'No details found'} </p>
     <p><span class="fw-bold">Memory:</span> ${phone.mainFeatures.memory ? phone.mainFeatures.memory : 'No details found'}</p>
     <p><span class="fw-bold">Storage:</span> ${phone.mainFeatures.storage ? phone.mainFeatures.storage : 'No details found'}</p>
     `
