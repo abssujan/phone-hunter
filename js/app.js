@@ -34,6 +34,7 @@ const displayPhoneData = (phones, dataLimit) => {
                 <h5 class="card-title"> ${phone.phone_name} </h5>
                 <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
              </div>
+             <div class=""><a href="#" class="btn btn-primary w-50">Show Details</a></div>
         </div>
         `;
         phoneContainer.appendChild(phoneDiv)
