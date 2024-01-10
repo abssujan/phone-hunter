@@ -34,7 +34,7 @@ const displayPhoneData = (phones, dataLimit) => {
                 <h5 class="card-title"> ${phone.phone_name} </h5>
                 <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
              </div>
-             <div class=""><a href="#" class="btn btn-primary w-50">Show Details</a></div>
+             <div onclick="loadShowDetailsData('${phone.slug}')" class=""><a href="#" class="btn btn-primary w-50">Show Details</a></div>
         </div>
         `;
         phoneContainer.appendChild(phoneDiv)
@@ -52,6 +52,13 @@ const porcecerSearch = (dataLimit) => {
 document.getElementById('search-btn').addEventListener('click', function(){
     porcecerSearch(10)
 })
+// enter event
+document.getElementById('input-field').addEventListener('keypress', function (e) {
+    console.log(e)
+    if (e.key === 'Enter') {
+        porcecerSearch(10)
+    }
+});
 
 const toggleSpiner = (isLoading) => {
     const loderSection = document.getElementById('loder');
@@ -64,3 +71,10 @@ const toggleSpiner = (isLoading) => {
 document.getElementById('show-all-btn').addEventListener('click', function(){
     porcecerSearch()
 })
+const loadShowDetailsData = async id => {
+    const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data.data)
+
+}
